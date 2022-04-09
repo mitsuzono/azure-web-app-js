@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "handson2022-yuki1"
+          app-name: "handson2022"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D99CE90FBFFD4FA7B5BD3EB6D38313A7 }}
           package: .
