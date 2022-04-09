@@ -54,3 +54,12 @@ jobs:
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D99CE90FBFFD4FA7B5BD3EB6D38313A7 }}
           package: .
+        on:
+          pull_request:
+            types: [review_requested]
+        jobs:
+          specific_review_requested:
+            runs-on: ubuntu-latest
+            if: ${{ github.event.requested_team.name == 'Yuki326'}}
+            steps:
+              - run: echo 'A review from Yuki326 was requested'
