@@ -8,6 +8,18 @@ on:
     branches:
       - main
   workflow_dispatch:
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo The PR was merged
 
 jobs:
   build:
@@ -51,15 +63,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: "handson2022"
-          slot-name: "Production"
+          slot-name: "yuki1"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D99CE90FBFFD4FA7B5BD3EB6D38313A7 }}
           package: .
-        on:
-          pull_request:
-            types: [review_requested]
-        jobs:
-          specific_review_requested:
-            runs-on: ubuntu-latest
-            if: ${{ github.event.requested_team.name == 'Yuki326'}}
-            steps:
-              - run: echo 'A review from Yuki326 was requested'
