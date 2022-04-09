@@ -4,12 +4,10 @@
 name: Build and deploy Node.js app to Azure Web App - handson2022
 
 on:
-  commmit:
-    branches:
-      - main
   push:
     branches:
       - main
+      - work-edit-yml
   workflow_dispatch:
 
 jobs:
@@ -53,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "handson2022"
+          app-name: "handson2022-yuki1"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D99CE90FBFFD4FA7B5BD3EB6D38313A7 }}
           package: .
